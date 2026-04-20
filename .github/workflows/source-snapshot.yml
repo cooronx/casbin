@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   build-source-snapshot:
-    if: ${{ github.repository == 'apache/casbin' }}
+    if: ${{ github.repository == 'cooronx/casbin' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
