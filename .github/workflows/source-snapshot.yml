@@ -1,0 +1,79 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+name: Build Source Snapshot
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-source-snapshot:
+    if: ${{ github.repository == 'apache/casbin' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute snapshot metadata
+        id: snapshot
+        run: |
+          SHORT_SHA="$(git rev-parse --short HEAD)"
+          SNAPSHOT_DATE="$(date -u +%Y%m%d)"
+          SNAPSHOT_VERSION="${SNAPSHOT_DATE}-${SHORT_SHA}-snapshot"
+          SNAPSHOT_BASENAME="casbin-${SNAPSHOT_VERSION}-src"
+
+          echo "version=${SNAPSHOT_VERSION}" >> "${GITHUB_OUTPUT}"
+          echo "basename=${SNAPSHOT_BASENAME}" >> "${GITHUB_OUTPUT}"
+
+      - name: Generate snapshot notes
+        run: |
+          {
+            echo "# Casbin snapshot ${GITHUB_SHA}"
+            echo
+            echo "- Branch: ${GITHUB_REF_NAME}"
+            echo "- Commit: ${GITHUB_SHA}"
+            echo "- Generated at: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          } > SNAPSHOT_NOTES.md
+
+      - name: Create source archives
+        run: |
+          mkdir -p dist
+          git archive --format=tar.gz --prefix="${{ steps.snapshot.outputs.basename }}/" -o "dist/${{ steps.snapshot.outputs.basename }}.tar.gz" HEAD
+          git archive --format=zip --prefix="${{ steps.snapshot.outputs.basename }}/" -o "dist/${{ steps.snapshot.outputs.basename }}.zip" HEAD
+          cp SNAPSHOT_NOTES.md dist/
+
+      - name: Generate checksums
+        run: |
+          (
+            cd dist
+            sha256sum "${{ steps.snapshot.outputs.basename }}.tar.gz" "${{ steps.snapshot.outputs.basename }}.zip" SNAPSHOT_NOTES.md > checksums.txt
+          )
+
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.snapshot.outputs.basename }}
+          path: dist/*
+          if-no-files-found: error
