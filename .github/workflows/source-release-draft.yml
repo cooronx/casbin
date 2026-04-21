@@ -104,21 +104,6 @@ jobs:
           mkdir -p dist
           git archive --format=tar.gz --prefix="${{ steps.release.outputs.basename }}/" -o "dist/${{ steps.release.outputs.basename }}.tar.gz" "${{ steps.release.outputs.tag }}"
           git archive --format=zip --prefix="${{ steps.release.outputs.basename }}/" -o "dist/${{ steps.release.outputs.basename }}.zip" "${{ steps.release.outputs.tag }}"
-          cp RELEASE_NOTES.md dist/
-
-      - name: Generate checksums
-        run: |
-          (
-            cd dist
-            sha256sum "${{ steps.release.outputs.basename }}.tar.gz" "${{ steps.release.outputs.basename }}.zip" RELEASE_NOTES.md > checksums.txt
-          )
-
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.release.outputs.basename }}
-          path: dist/*
-          if-no-files-found: error
 
       - name: Create draft GitHub release
         uses: softprops/action-gh-release@v2
@@ -130,5 +115,3 @@ jobs:
           files: |
             dist/${{ steps.release.outputs.basename }}.tar.gz
             dist/${{ steps.release.outputs.basename }}.zip
-            dist/checksums.txt
-            dist/RELEASE_NOTES.md

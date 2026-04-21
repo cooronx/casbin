@@ -90,11 +90,56 @@ jobs:
               '
           )"
           NEXT_SNAPSHOT_NUMBER="$((LAST_SNAPSHOT_NUMBER + 1))"
-          SNAPSHOT_VERSION="${BASE_VERSION}-snapshot.${NEXT_SNAPSHOT_NUMBER}"
+          SNAPSHOT_VERSION="v${BASE_VERSION}-snapshot.${NEXT_SNAPSHOT_NUMBER}"
 
           echo "base_version=${BASE_VERSION}" >> "${GITHUB_OUTPUT}"
           echo "number=${NEXT_SNAPSHOT_NUMBER}" >> "${GITHUB_OUTPUT}"
           echo "version=${SNAPSHOT_VERSION}" >> "${GITHUB_OUTPUT}"
+
+      - name: Generate snapshot release notes
+        run: |
+          BASE_TAG="v${{ steps.snapshot.outputs.base_version }}"
+          PREVIOUS_TAG="$(git describe --tags --abbrev=0 "${BASE_TAG}^" 2>/dev/null || true)"
+          RANGE="HEAD"
+
+          if [ -n "${PREVIOUS_TAG}" ]; then
+            RANGE="${PREVIOUS_TAG}..HEAD"
+          fi
+
+          FEATURES="$(git log --pretty=format:'%s (%h)' "${RANGE}" | grep -Ei '^(feat)(\(.+\))?: ' || true)"
+          FIXES="$(git log --pretty=format:'%s (%h)' "${RANGE}" | grep -Ei '^(fix)(\(.+\))?: ' || true)"
+          DOCS="$(git log --pretty=format:'%s (%h)' "${RANGE}" | grep -Ei '^(docs?|doc)(\(.+\))?: ' || true)"
+
+          {
+            echo "# Casbin ${{ steps.snapshot.outputs.version }}"
+            echo
+            if [ -n "${FEATURES}" ]; then
+              echo "## Features"
+              echo
+              printf '%s\n' "${FEATURES}" | sed 's/^/- /'
+              echo
+            fi
+
+            if [ -n "${FIXES}" ]; then
+              echo "## Fixes"
+              echo
+              printf '%s\n' "${FIXES}" | sed 's/^/- /'
+              echo
+            fi
+
+            if [ -n "${DOCS}" ]; then
+              echo "## Docs"
+              echo
+              printf '%s\n' "${DOCS}" | sed 's/^/- /'
+              echo
+            fi
+
+            if [ -z "${FEATURES}${FIXES}${DOCS}" ]; then
+              echo "## Notes"
+              echo
+              echo "- No feat/fix/doc commits were found in this snapshot range."
+            fi
+          } > SNAPSHOT_RELEASE_NOTES.md
 
       - name: Create snapshot GitHub release
         uses: softprops/action-gh-release@v2
@@ -102,6 +147,6 @@ jobs:
           tag_name: ${{ steps.snapshot.outputs.version }}
           target_commitish: ${{ github.sha }}
           name: ${{ steps.snapshot.outputs.version }}
-          body: ""
+          body_path: SNAPSHOT_RELEASE_NOTES.md
           draft: false
           prerelease: true
