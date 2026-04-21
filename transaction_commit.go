@@ -18,7 +18,7 @@ import (
 	"errors"
 	"sync/atomic"
 
-	"github.com/casbin/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 // Commit commits the transaction using a two-phase commit protocol.

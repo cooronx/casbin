@@ -17,9 +17,9 @@ package persist_test
 import (
 	"testing"
 
-	"github.com/casbin/casbin/v3"
-	"github.com/casbin/casbin/v3/model"
-	"github.com/casbin/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3"
+	"github.com/cooronx/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 func TestPersist(t *testing.T) {

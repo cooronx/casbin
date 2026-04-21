@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 type testResource struct {

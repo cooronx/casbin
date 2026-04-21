@@ -17,7 +17,7 @@ package effector
 import (
 	"errors"
 
-	"github.com/casbin/casbin/v3/constant"
+	"github.com/cooronx/casbin/v3/constant"
 )
 
 // DefaultEffector is default effector for Casbin.

@@ -136,7 +136,7 @@ What Casbin does NOT do:
 ## Installation
 
 ```
-go get github.com/casbin/casbin/v3
+go get github.com/cooronx/casbin/v3
 ```
 
 ## Documentation

@@ -19,7 +19,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/casbin/casbin/v3/rbac"
+	"github.com/cooronx/casbin/v3/rbac"
 )
 
 // Assertion represents an expression in a section of the model.

@@ -21,8 +21,8 @@ import (
 
 	"github.com/casbin/govaluate"
 
-	"github.com/casbin/casbin/v3/persist"
-	"github.com/casbin/casbin/v3/rbac"
+	"github.com/cooronx/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3/rbac"
 )
 
 // SyncedEnforcer wraps Enforcer and provides synchronized access.

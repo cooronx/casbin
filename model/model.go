@@ -23,9 +23,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/casbin/casbin/v3/config"
-	"github.com/casbin/casbin/v3/constant"
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/config"
+	"github.com/cooronx/casbin/v3/constant"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 // Model represents the whole access control model.

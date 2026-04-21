@@ -19,10 +19,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/casbin/casbin/v3/detector"
-	"github.com/casbin/casbin/v3/model"
-	fileadapter "github.com/casbin/casbin/v3/persist/file-adapter"
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/detector"
+	"github.com/cooronx/casbin/v3/model"
+	fileadapter "github.com/cooronx/casbin/v3/persist/file-adapter"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 func TestKeyMatchModelInMemory(t *testing.T) {

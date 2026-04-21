@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 func rawEnforce(sub string, obj string, act string) bool {

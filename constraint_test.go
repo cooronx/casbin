@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/casbin/casbin/v3/errors"
-	"github.com/casbin/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/errors"
+	"github.com/cooronx/casbin/v3/model"
 )
 
 func TestConstraintSOD(t *testing.T) {

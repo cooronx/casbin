@@ -17,10 +17,10 @@ package casbin
 import (
 	"fmt"
 
-	Err "github.com/casbin/casbin/v3/errors"
-	"github.com/casbin/casbin/v3/log"
-	"github.com/casbin/casbin/v3/model"
-	"github.com/casbin/casbin/v3/persist"
+	Err "github.com/cooronx/casbin/v3/errors"
+	"github.com/cooronx/casbin/v3/log"
+	"github.com/cooronx/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 const (

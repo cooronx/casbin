@@ -19,7 +19,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/casbin/casbin/v3/log"
+	"github.com/cooronx/casbin/v3/log"
 )
 
 func verifyBufferOutput(t *testing.T, logOutput string) {

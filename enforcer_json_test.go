@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/casbin/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/model"
 )
 
 func TestInvalidJsonRequest(t *testing.T) {

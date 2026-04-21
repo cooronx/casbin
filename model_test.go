@@ -17,10 +17,10 @@ package casbin
 import (
 	"testing"
 
-	"github.com/casbin/casbin/v3/model"
-	fileadapter "github.com/casbin/casbin/v3/persist/file-adapter"
-	"github.com/casbin/casbin/v3/rbac"
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/model"
+	fileadapter "github.com/cooronx/casbin/v3/persist/file-adapter"
+	"github.com/cooronx/casbin/v3/rbac"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 func testEnforce(t *testing.T, e *Enforcer, sub interface{}, obj interface{}, act string, res bool) {

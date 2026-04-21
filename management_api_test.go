@@ -17,7 +17,7 @@ package casbin
 import (
 	"testing"
 
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 func testStringList(t *testing.T, title string, f func() ([]string, error), res []string) {

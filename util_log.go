@@ -15,8 +15,8 @@
 package casbin
 
 import (
-	"github.com/casbin/casbin/v3/log"
-	"github.com/casbin/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/log"
+	"github.com/cooronx/casbin/v3/model"
 )
 
 // onLogBeforeEvent calls OnBeforeEvent on the logger if it exists.

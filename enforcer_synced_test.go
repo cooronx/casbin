@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/casbin/casbin/v3/errors"
-	"github.com/casbin/casbin/v3/util"
+	"github.com/cooronx/casbin/v3/errors"
+	"github.com/cooronx/casbin/v3/util"
 )
 
 func testEnforceSync(t *testing.T, e *SyncedEnforcer, sub string, obj interface{}, act string, res bool) {

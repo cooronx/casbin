@@ -17,8 +17,8 @@ package casbin
 import (
 	"fmt"
 
-	"github.com/casbin/casbin/v3/model"
-	"github.com/casbin/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 // ConflictError represents a transaction conflict error.

@@ -21,7 +21,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/casbin/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3/persist"
 	"github.com/google/uuid"
 )
 

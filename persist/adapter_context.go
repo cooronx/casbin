@@ -17,7 +17,7 @@ package persist
 import (
 	"context"
 
-	"github.com/casbin/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/model"
 )
 
 // ContextAdapter provides a context-aware interface for Casbin adapters.

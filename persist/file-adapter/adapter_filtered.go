@@ -20,8 +20,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/casbin/casbin/v3/model"
-	"github.com/casbin/casbin/v3/persist"
+	"github.com/cooronx/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 // FilteredAdapter is the filtered file adapter for Casbin. It can load policy

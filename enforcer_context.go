@@ -19,9 +19,9 @@ import (
 	"errors"
 	"fmt"
 
-	Err "github.com/casbin/casbin/v3/errors"
-	"github.com/casbin/casbin/v3/model"
-	"github.com/casbin/casbin/v3/persist"
+	Err "github.com/cooronx/casbin/v3/errors"
+	"github.com/cooronx/casbin/v3/model"
+	"github.com/cooronx/casbin/v3/persist"
 )
 
 // ContextEnforcer wraps Enforcer and provides context-aware operations.

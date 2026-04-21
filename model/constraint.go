@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/casbin/casbin/v3/errors"
+	"github.com/cooronx/casbin/v3/errors"
 )
 
 // ConstraintType represents the type of constraint.
