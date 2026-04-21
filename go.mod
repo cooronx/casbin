@@ -1,4 +1,4 @@
-module github.com/casbin/casbin/v3
+module github.com/cooronx/casbin/v3
 
 require (
 	github.com/bmatcuk/doublestar/v4 v4.6.1
